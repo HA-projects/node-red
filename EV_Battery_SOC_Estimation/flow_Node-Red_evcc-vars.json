@@ -1,0 +1,1225 @@
+[
+    {
+        "id": "5a528d576361d298",
+        "type": "comment",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Variables",
+        "info": "Base status\tCharging status\tResistance, CP–PE\tResistance, R2\tVoltage, CP–PE\nStatus A\tStandby\tOpen, or ∞ Ω\t\t+12 V\nStatus B\tVehicle detected\t2740 Ω\t\t+9±1 V\nStatus C\tReady (charging)\t882 Ω\t1300 Ω\t+6±1 V\nStatus D\tWith ventilation\t246 Ω\t270 Ω\t+3±1 V\nStatus E\tNo power (shut off)\t\t\t0 V\nStatus F\tError\t\t\t-12 V\n\n\n{\"option\":{{payload}}}",
+        "x": 90,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "0383241134e01665",
+        "type": "ha-number",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Battery capacity",
+        "version": 1,
+        "debugenabled": false,
+        "inputs": 0,
+        "outputs": 1,
+        "entityConfig": "ea205506011c0be2",
+        "exposeAsEntityConfig": "",
+        "mode": "listen",
+        "value": "payload",
+        "valueType": "msg",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "value"
+            },
+            {
+                "property": "previousValue",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "previousValue"
+            }
+        ],
+        "x": 110,
+        "y": 1080,
+        "wires": [
+            [
+                "717b0fd38179e641"
+            ]
+        ]
+    },
+    {
+        "id": "717b0fd38179e641",
+        "type": "debug",
+        "z": "07120dd2edfe4c3f",
+        "name": "debug 13",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 1110,
+        "wires": []
+    },
+    {
+        "id": "b987e4456a4612e3",
+        "type": "ha-sensor",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Battery SOC",
+        "entityConfig": "677268bf2e235758",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 1010,
+        "y": 1140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0da5b5082de07554",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "50",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "soc",
+        "payload": "50",
+        "payloadType": "num",
+        "x": 840,
+        "y": 1140,
+        "wires": [
+            [
+                "b987e4456a4612e3"
+            ]
+        ]
+    },
+    {
+        "id": "998275f8b767f9e9",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 350,
+        "y": 1210,
+        "wires": [
+            [
+                "621613124c149403"
+            ]
+        ]
+    },
+    {
+        "id": "7382dab05c050174",
+        "type": "ha-button",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng start charging",
+        "version": 0,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityConfig": "03f95a8cdb8daa15",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "x": 100,
+        "y": 1180,
+        "wires": [
+            [
+                "717b0fd38179e641"
+            ]
+        ]
+    },
+    {
+        "id": "df7428b2870290b7",
+        "type": "ha-button",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng stop charging",
+        "version": 0,
+        "debugenabled": false,
+        "outputs": 1,
+        "entityConfig": "928c49c86c7e1e30",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "x": 100,
+        "y": 1230,
+        "wires": [
+            [
+                "717b0fd38179e641"
+            ]
+        ]
+    },
+    {
+        "id": "621613124c149403",
+        "type": "ha-binary-sensor",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Battery Charger connected",
+        "entityConfig": "b938289f6ce4aac3",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 360,
+        "y": 1290,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0260fdcb50bc526c",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "C",
+        "payloadType": "str",
+        "x": 250,
+        "y": 1400,
+        "wires": [
+            [
+                "fd21a7f166650eb9"
+            ]
+        ]
+    },
+    {
+        "id": "fd21a7f166650eb9",
+        "type": "ha-sensor",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Charging Status",
+        "entityConfig": "fbe6ef2bfb3e7bf6",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 780,
+        "y": 1330,
+        "wires": [
+            [
+                "ca746c8ec28e22cf"
+            ]
+        ]
+    },
+    {
+        "id": "e7929c7c5072a22d",
+        "type": "ha-number",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Estimated Battery SOC",
+        "version": 1,
+        "debugenabled": false,
+        "inputs": 0,
+        "outputs": 1,
+        "entityConfig": "92b1deb4a422e8e2",
+        "exposeAsEntityConfig": "",
+        "mode": "listen",
+        "value": "payload",
+        "valueType": "msg",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "value"
+            },
+            {
+                "property": "previousValue",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "previousValue"
+            }
+        ],
+        "x": 770,
+        "y": 1260,
+        "wires": [
+            [
+                "e14fea4f01de0e22"
+            ]
+        ]
+    },
+    {
+        "id": "e14fea4f01de0e22",
+        "type": "debug",
+        "z": "07120dd2edfe4c3f",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1260,
+        "wires": []
+    },
+    {
+        "id": "db896d7b497e7713",
+        "type": "ha-binary-sensor",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Data available",
+        "entityConfig": "7d4814ed61553291",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 1020,
+        "y": 1090,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ddce2c430401a01",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 830,
+        "y": 1090,
+        "wires": [
+            [
+                "db896d7b497e7713"
+            ]
+        ]
+    },
+    {
+        "id": "15eb6bfe580d2267",
+        "type": "server-state-changed",
+        "z": "07120dd2edfe4c3f",
+        "name": "EV connected",
+        "server": "467d275d.a68208",
+        "version": 6,
+        "outputs": 1,
+        "exposeAsEntityConfig": "",
+        "entities": {
+            "entity": [
+                "binary_sensor.evcc_carport_charger_connected"
+            ],
+            "substring": [],
+            "regex": []
+        },
+        "outputInitially": true,
+        "stateType": "habool",
+        "ifState": "",
+        "ifStateType": "str",
+        "ifStateOperator": "is",
+        "outputOnlyOnStateChange": true,
+        "for": 0,
+        "forType": "num",
+        "forUnits": "minutes",
+        "ignorePrevStateNull": false,
+        "ignorePrevStateUnknown": false,
+        "ignorePrevStateUnavailable": false,
+        "ignoreCurrentStateUnknown": false,
+        "ignoreCurrentStateUnavailable": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "triggerId"
+            }
+        ],
+        "x": 80,
+        "y": 1290,
+        "wires": [
+            [
+                "621613124c149403"
+            ]
+        ]
+    },
+    {
+        "id": "968c01f06f34452f",
+        "type": "change",
+        "z": "07120dd2edfe4c3f",
+        "name": "evcc_B",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "B",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 1380,
+        "wires": [
+            [
+                "fd21a7f166650eb9"
+            ]
+        ]
+    },
+    {
+        "id": "20d780694276f7a0",
+        "type": "change",
+        "z": "07120dd2edfe4c3f",
+        "name": "evcc_C",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "C",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 1330,
+        "wires": [
+            [
+                "fd21a7f166650eb9"
+            ]
+        ]
+    },
+    {
+        "id": "ca746c8ec28e22cf",
+        "type": "debug",
+        "z": "07120dd2edfe4c3f",
+        "name": "debug 16",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 980,
+        "y": 1330,
+        "wires": []
+    },
+    {
+        "id": "378a941f8ac94938",
+        "type": "change",
+        "z": "07120dd2edfe4c3f",
+        "name": "evcc_A",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "A",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 570,
+        "y": 1430,
+        "wires": [
+            [
+                "fd21a7f166650eb9"
+            ]
+        ]
+    },
+    {
+        "id": "33aa932613d7974e",
+        "type": "api-current-state",
+        "z": "07120dd2edfe4c3f",
+        "name": "EV = chrg",
+        "server": "467d275d.a68208",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.evcc_carport_charger_charging",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 410,
+        "y": 1340,
+        "wires": [
+            [
+                "20d780694276f7a0"
+            ],
+            [
+                "968c01f06f34452f"
+            ]
+        ]
+    },
+    {
+        "id": "1b572d49117d5a2d",
+        "type": "api-current-state",
+        "z": "07120dd2edfe4c3f",
+        "name": "EV connect",
+        "server": "467d275d.a68208",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "binary_sensor.evcc_carport_charger_connected",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 240,
+        "y": 1340,
+        "wires": [
+            [
+                "33aa932613d7974e"
+            ],
+            [
+                "378a941f8ac94938"
+            ]
+        ]
+    },
+    {
+        "id": "e09a8c0a38d11c6a",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "5 sec",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "7",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 80,
+        "y": 1340,
+        "wires": [
+            [
+                "1b572d49117d5a2d"
+            ]
+        ]
+    },
+    {
+        "id": "81b6a1e2b078d428",
+        "type": "ha-number",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng Daily average Bat use",
+        "version": 1,
+        "debugenabled": false,
+        "inputs": 0,
+        "outputs": 1,
+        "entityConfig": "2955c6577f8bf771",
+        "exposeAsEntityConfig": "",
+        "mode": "listen",
+        "value": "payload",
+        "valueType": "msg",
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "value"
+            },
+            {
+                "property": "previousValue",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "previousValue"
+            }
+        ],
+        "x": 130,
+        "y": 1130,
+        "wires": [
+            [
+                "717b0fd38179e641"
+            ]
+        ]
+    },
+    {
+        "id": "686dac922b4e858f",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 350,
+        "y": 1250,
+        "wires": [
+            [
+                "621613124c149403"
+            ]
+        ]
+    },
+    {
+        "id": "010b7e213492284b",
+        "type": "ha-sensor",
+        "z": "07120dd2edfe4c3f",
+        "name": "Xpeng target SOC",
+        "entityConfig": "9eb013c7cb44b117",
+        "version": 0,
+        "state": "payload",
+        "stateType": "msg",
+        "attributes": [],
+        "inputOverride": "allow",
+        "outputProperties": [],
+        "x": 1010,
+        "y": 1190,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b67ca938ac549f67",
+        "type": "inject",
+        "z": "07120dd2edfe4c3f",
+        "name": "50",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "soc",
+        "payload": "75",
+        "payloadType": "num",
+        "x": 840,
+        "y": 1190,
+        "wires": [
+            [
+                "010b7e213492284b"
+            ]
+        ]
+    },
+    {
+        "id": "ea205506011c0be2",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Battery capacity",
+        "version": 6,
+        "entityType": "number",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Battery capacity"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": "diagnostic"
+            },
+            {
+                "property": "device_class",
+                "value": "energy"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "kWh"
+            },
+            {
+                "property": "min_value",
+                "value": 20
+            },
+            {
+                "property": "max_value",
+                "value": 120
+            },
+            {
+                "property": "step_value",
+                "value": 1
+            },
+            {
+                "property": "mode",
+                "value": "auto"
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "677268bf2e235758",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Battery SOC",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Battery SOC"
+            },
+            {
+                "property": "icon",
+                "value": "md:bat"
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": "battery"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "%"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "03f95a8cdb8daa15",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng start charging",
+        "version": 6,
+        "entityType": "button",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng start charging"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "928c49c86c7e1e30",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng stop charging",
+        "version": 6,
+        "entityType": "button",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng stop charging"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "b938289f6ce4aac3",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Battery Charger connected",
+        "version": 6,
+        "entityType": "binary_sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Battery Charger connected"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": "diagnostic"
+            },
+            {
+                "property": "device_class",
+                "value": "plug"
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "fbe6ef2bfb3e7bf6",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Charging Status",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Charging Status"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": "diagnostic"
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": ""
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "92b1deb4a422e8e2",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Estimated Battery SOC",
+        "version": 6,
+        "entityType": "number",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Estimated Battery SOC"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "%"
+            },
+            {
+                "property": "min_value",
+                "value": 10
+            },
+            {
+                "property": "max_value",
+                "value": 100
+            },
+            {
+                "property": "step_value",
+                "value": ""
+            },
+            {
+                "property": "mode",
+                "value": "auto"
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "7d4814ed61553291",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Data available",
+        "version": 6,
+        "entityType": "binary_sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Data available"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": "presence"
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "467d275d.a68208",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": true,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": true,
+        "heartbeatInterval": "30",
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": "at: ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "h23",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": true,
+        "info": "y|yes|true|on|home|open"
+    },
+    {
+        "id": "2955c6577f8bf771",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng Daily average Bat use",
+        "version": 6,
+        "entityType": "number",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng Daily average Bat use"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": ""
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "%"
+            },
+            {
+                "property": "min_value",
+                "value": 0
+            },
+            {
+                "property": "max_value",
+                "value": 60
+            },
+            {
+                "property": "step_value",
+                "value": 1
+            },
+            {
+                "property": "mode",
+                "value": "auto"
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "9eb013c7cb44b117",
+        "type": "ha-entity-config",
+        "server": "467d275d.a68208",
+        "deviceConfig": "92bacb90b002509b",
+        "name": "Xpeng target SOC",
+        "version": 6,
+        "entityType": "sensor",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": "Xpeng target SOC"
+            },
+            {
+                "property": "icon",
+                "value": ""
+            },
+            {
+                "property": "entity_picture",
+                "value": ""
+            },
+            {
+                "property": "entity_category",
+                "value": ""
+            },
+            {
+                "property": "device_class",
+                "value": "battery"
+            },
+            {
+                "property": "unit_of_measurement",
+                "value": "%"
+            },
+            {
+                "property": "state_class",
+                "value": ""
+            }
+        ],
+        "resend": false,
+        "debugEnabled": false
+    },
+    {
+        "id": "92bacb90b002509b",
+        "type": "ha-device-config",
+        "name": "XpengG6",
+        "hwVersion": "",
+        "manufacturer": "Xpeng",
+        "model": "G6",
+        "swVersion": ""
+    },
+    {
+        "id": "61b2d7a26f22342a",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-home-assistant-websocket": "0.74.2"
+        }
+    }
+]
